@@ -1,117 +1,24 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+<head> 
+	<!-- Configuration générale de la page -->
     <meta charset="utf-8" />
     <title>villeatoutes</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
     <link rel="shortcut icon" type="image/png" href="img/logo.png"/>
+	
+	<!-- Appel des fichiers de style -->
 	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" />
     <!--[if lte IE 8]><link rel="stylesheet" href="//cdn.leafletjs.com/leaflet-0.7.2/leaflet.ie.css" /><![endif]-->
-
     <link rel="stylesheet" href="src/leaflet-sidebar.css" />
-
-	<style>
-
-		body {
-            padding: 0;
-            margin-right: auto;
-			margin-left:auto;
-        }
-
-        html, body, #mapid {
-            height: 100%;
-            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-			color: #333333;
-        }
-
-		a {
-			text-decoration:none;
-			color:red;
-		}
-		
-        .lorem {
-			em:1.2;
-        }
-		
-		.boutons {
-		margin-top: 25px;
-		}
-		
-		.bouton {
-		color:#1d1d1b;
-		font-weight: bold;
-		cursor: pointer;
-		height: 21px;
-		}
-		
-		.bouton:hover {
-		color: #004494;
-		}
-		
-		.bouton_on {
-		color: red;
-		font-weight: bold;
-		height: 21px;
-		}
-		
-		.Nom {
-            em:2;
-			color:#f69788;
-			Font-Weight: Bold;
-        }
-		
-		.Description {
-            em:1.2;
-        }
-		
-		.Internet {
-           text-decoration : none;
-        }
-		
-		
-		.presentation {
-			display: block;
-		}
-		
-		#popup {
-			display: none;
-		}
-		
-		.Tooltips {
-		em:0.7;
-		font-weight: bold;
-		padding:2px;
-		border:none;
-		color: #333333;
-		background-color: #f69788;
-		}
-		
-		strong {
-		color:#f69788;
-		em:1.6;
-		Font-Weight: Bold;
-		}
-		
-		h1{
-			em:2;
-			color:#f69788;
-		}
-	
-		h2{
-			em:1.8;
-			color:#f69788;
-			padding-top:25px;
-		}
-
-
-</style>
+	<link rel="stylesheet" href="style.css" />
 </head>
 
-<body>
+<body> <!-- Contenu de la sidebar -->
     <div id="sidebar" class="sidebar collapsed">
-        <!-- Nav tabs -->
+        <!-- Icônes du panneau gauche -->
         <div class="sidebar-tabs">
             <ul role="tablist">
                 <li><a href="#home" role="tab" id="logo"><i class="fa"><img src="img/logo.png" style="width:30px;padding:5px"  /></i></a></li>
@@ -120,14 +27,16 @@
             </ul>
         </div>
 
-        <!-- Tab panes -->
+        <!-- Contenu du panneau gauche -->
         <div class="sidebar-content">
             <div class="sidebar-pane" id="home">
-                <h1 style="text-transform:uppercase" class="sidebar-header">
+               <!-- Titre -->
+			   <h1 style="text-transform:uppercase" class="sidebar-header">
                     La ville est à tou.te.s
                     <span class="sidebar-close" id="close"><i class="fa fa-caret-left"></i></span>
-                </h1>
+               </h1>
 				
+				<!-- Présentation de la carte - légende - affiché par défaut -->
 				<div class="presentation" id="defaut">
 					</br>
 					<i>Cliquez sur un point de la carte pour afficher les informations / cliquer sur une catégorie en légende pour isoler les points correspondants</i>
@@ -156,11 +65,12 @@
 					<p class="lorem">mardi 18 décembre, de 16h à 20h</p>
 					<p class="lorem">Les permanences proposées se déroulent à la Plaine Saint-Denis (MSH Paris nord) mais elles peuvent évidemment s’organiser ailleurs selon les propositions des participants.</p>
 				
-				<br/>
+					<br/>
 					<p><i>Menu : <a href="https://lavilleatous.wordpress.com/la-carte-cest-quoi/" style="text-decoration:none;" target="_blank ">La carte, c'est quoi ? </a> • <a href="https://lavilleatous.wordpress.com/cest-qui/" style="text-decoration:none;" target="_blank ">La carte, c'est qui ?</a> • <a href="https://lavilleatous.wordpress.com/comment-ca-marche/" style="text-decoration:none;" target="_blank ">Comment ça marche ? </a> • <a href="https://lavilleatous.wordpress.com/liens-utiles/" style="text-decoration:none;" target="_blank ">Liens utiles</a> • <a href="https://lavilleatous.wordpress.com/contact/" style="text-decoration:none;" target="_blank ">Contact</a> • Dernière mise à jour : 27 novembre 2018</i></p>
 				
 				</div>
-
+				
+				<!-- Contenu du panneau au clic sur un point -->
 				<div id="popup">
 					<h1 id="libgeo"></h1>
 					<p class="Nom" id="nom"></p>
@@ -171,49 +81,28 @@
 				
             </div>
 
-            <div class="sidebar-pane" id="profile">
-                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-            </div>
-
         </div>
     </div>
 
-
+	<!-- emplacement de la carte -->
 	<div id="mapid" class="sidebar-map"></div>
 	
+	<!-- appel des bibliothèques de script -->
     <script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"></script>
     <script src="https://turbo87.github.io/sidebar-v2/js/leaflet-sidebar.js"></script>
 	<script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-	<script type="text/javascript" src="data/departements.js"></script>
-	<script type="text/javascript" src="data/regions.js"></script>
-
 	
     <script>
 		
 			
 		// Création de la carte
 		var map = L.map('mapid', {maxZoom:15, minZoom:6
-		//maxBounds: [
-        //south west
-        //[39, -18],
-        //north east
-        //[54, 12]
-        //], 
 		})
 		.setView([46.5, 2], 6);
 		map.zoomControl.setPosition('topright');
 		
 		//Définition des pictos
-		var LeafIcon = L.Icon.extend({
-		options: {
-			//shadowUrl: 'img/shadow.png',
-			//shadowSize:   [23, 45],
-			//shadowAnchor: [0, 0],
-			//iconSize:     [25, 25],
-			//iconAnchor:   [0, 0],
-			//popupAnchor:  [0, -30]
-		}
-		});
+		var LeafIcon = L.Icon.extend({});
 		var picto1a = new LeafIcon({iconUrl: 'img/picto_1a.png', iconSize: [10,10], iconAnchor:[5,5]}),
 			picto2a = new LeafIcon({iconUrl: 'img/picto_2a.png', iconSize: [10,10], iconAnchor:[5,5]}),
 			picto3a = new LeafIcon({iconUrl: 'img/picto_3a.png', iconSize: [10,10], iconAnchor:[5,5]}),
@@ -222,18 +111,7 @@
 			picto3b= new LeafIcon({iconUrl: 'img/picto_3b.png', iconSize: [20,20], iconAnchor:[10,10]});
 			pictoON= new LeafIcon({iconUrl: 'img/picto_1c.png', iconSize: [30,30], iconAnchor:[15,15]});
 
-		/* Choix du fond de carte 
-		var GeoportailFrance_parcels = L.tileLayer('https://wxs.ign.fr/{apikey}/geoportail/wmts?REQUEST=GetTile&SERVICE=WMTS&VERSION=1.0.0&STYLE={style}&TILEMATRIXSET=PM&FORMAT={format}&LAYER=CADASTRALPARCELS.PARCELS&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}', {
-		attribution: '<a target="_blank" href="https://www.cget.gouv.fr/ressources/cartotheque">CGET service carto</a>',
-		//bounds: [[-75, -180], [81, 180]],
-		//minZoom: 5,
-		//maxZoom: 10,
-		apikey: 'choisirgeoportail',
-		format: 'image/png',
-		style: 'bdparcellaire'
-		});
-		GeoportailFrance_parcels.addTo(map);*/
-		
+		// Choix du fond de carte 
 		var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 19,
 		attribution: ''
@@ -242,23 +120,18 @@
 		
 		//Ajout des données drive
 		var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1GOzHW2ub-a1yDTWjq0wPUEO_Ojg17GBI3gOXAyourzQ/edit?usp=sharing';
-		
 		function init() {
 			Tabletop.init({ 
 				key: publicSpreadsheetUrl,
 				callback: showInfo,
 				simpleSheet: true
 			})
-		}
+		};
 		
-		//function choixPicto () {
-		//	return picto2 ;
-		//}
-		
+		//Création des couches de points
 		var pointBottom = new L.featureGroup;
 		var pointMedium = new L.featureGroup;
 		var pointTop = new L.featureGroup;
-		
 		
 		function showInfo(data, tabletop) {
 			for (var i in data){
@@ -303,28 +176,14 @@
 		pointMedium.addTo(map);
 		pointTop.addTo(map);
 		
-		//var test;
+		//Action au clic sur un point
 		
-		//Action au clic sur un marker
 		function popup(e) {
-
+			
 			//ouverture de la sidebar
 			if (document.getElementById('sidebar').classList.contains('collapsed')){
 				sidebar.open('home');
-				//if (map.getZoom() < 8) {map.setView([46.5, -3], 6);}
 				}
-			
-			//Modification de l'icone
-			//if(test) {
-				//if (test.properties.Type == "bottom"){
-					//test.off('mouseout');
-					//test.setIcon(pictoON);
-					//}
-				//else {test.setIcon(picto1c);}
-			//}
-			//test = e;
-			//if (test.feature.properties.categorie == "sig"){test.setIcon(checkedIcon_on);}
-			//else {test.setIcon(uncheckedIcon_on);}
 			
 			//Remplissage de la popup
 			document.getElementById('popup').style.display = "block";
@@ -334,35 +193,18 @@
 			document.getElementById('description').innerHTML = e.properties.Description_courte;
 			document.getElementById('internet').innerHTML = "&rarr;  <a href="+e.properties.Site_internet+" target=_blank >Aller sur le site internet</a>" ;
 			document.getElementById('adresse').innerHTML = "Adresse : "+e.properties.Adresse ;
-			//document.getElementById('region').innerHTML = "Région "+test.feature.properties.NOM_REGION;
-			
-			/*if (test.feature.properties.DATE_SIGN !== "indefini" && test.feature.properties.categorie == "sig" ) {
-				document.getElementById('signature').innerHTML = "Date de la signature : <strong>"+test.feature.properties.DATE_SIGN+"</strong>";
-				}
-			else {document.getElementById('signature').innerHTML = "";}
-			
-			if (test.feature.properties.ACTION) {console.log(test.feature.properties.ACTION); document.getElementById('action').innerHTML = "<strong>"+test.feature.properties.ACTION+"</strong> actions matures engagées dès 2018";}
-			else {document.getElementById('action').innerHTML = "";}
-			
-			if (test.feature.properties.PROJET) {document.getElementById('projet').innerHTML = "Projet de cœur de ville en cours : <br/><a href=\'"+test.feature.properties.INTERNET+"/' target=\'_blank\' style=\'text-decoration:none; color:#ffc20e\'><strong>"+test.feature.properties.PROJET+"</strong></a>";}
-			else {document.getElementById('projet').innerHTML = "";}
-			*/
-		
-		
-		
 		}
 		
+		//Création de la sidebar
 		var sidebar = L.control.sidebar('sidebar').addTo(map);
-		
-		
-		//Events au clic sur la carte
+
+		//Action au clic sur la carte
 		map.on('click', function(e) {   
 			if (document.getElementById('sidebar').classList.contains('collapsed')) {
 				sidebar.open('home');
 			}
 			else {
 				sidebar.close();
-				//map.setView([46.5, 2], 6);
 			}
 			document.getElementById('popup').style.display = "none";
 			document.getElementById('defaut').style.display = "block";
@@ -375,21 +217,17 @@
 			map.addLayer(pointTop);
 		});
 		
-		//Carte qui bouge à l'ouverture de la popup
+		//Action au clic sur le logo
 		document.getElementById("logo").addEventListener("click", function(){
 		document.getElementById('popup').style.display = "none";
 		document.getElementById('defaut').style.display = "block";
 		if(map.getZoom() < 8){
 		if (document.getElementById('sidebar').classList.contains('collapsed')) {
-		//map.panTo([46.5, 2],{duration: 0.5 });
 		sidebar.open('home');}
-		else {
-			//map.panTo([46.5, -3],{duration: 0.5 });
-		}
 		}
 		});
 
-		//Boutons en légende
+		//Fonctionnement des boutons en légende
 		document.getElementById("bouton1").addEventListener("click", function(event){
 			event.stopPropagation();
 			document.getElementById('bouton1').setAttribute("class", "bouton_on");

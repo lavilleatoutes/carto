@@ -1,0 +1,90 @@
+		body {
+            padding: 0;
+            margin-right: auto;
+			margin-left:auto;
+        }
+
+        html, body, #mapid {
+            height: 100%;
+            font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
+			color: #333333;
+        }
+
+		a {
+			text-decoration:none;
+			color:red;
+		}
+		
+        .lorem {
+			em:1.2;
+        }
+		
+		.boutons {
+		margin-top: 25px;
+		}
+		
+		.bouton {
+		color:#1d1d1b;
+		font-weight: bold;
+		cursor: pointer;
+		height: 21px;
+		}
+		
+		.bouton:hover {
+		color: #004494;
+		}
+		
+		.bouton_on {
+		color: red;
+		font-weight: bold;
+		height: 21px;
+		}
+		
+		.Nom {
+            em:2;
+			color:#f69788;
+			Font-Weight: Bold;
+        }
+		
+		.Description {
+            em:1.2;
+        }
+		
+		.Internet {
+           text-decoration : none;
+        }
+		
+		
+		.presentation {
+			display: block;
+		}
+		
+		#popup {
+			display: none;
+		}
+		
+		.Tooltips {
+		em:0.7;
+		font-weight: bold;
+		padding:2px;
+		border:none;
+		color: #333333;
+		background-color: #f69788;
+		}
+		
+		strong {
+		color:#f69788;
+		em:1.6;
+		Font-Weight: Bold;
+		}
+		
+		h1{
+			em:2;
+			color:#f69788;
+		}
+	
+		h2{
+			em:1.8;
+			color:#f69788;
+			padding-top:25px;
+		}
